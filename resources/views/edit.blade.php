@@ -11,7 +11,15 @@
 </head>
 <body>
 <div class="container">
-
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <div class="row ">
         <div class="col-lg-7 mx-auto">
@@ -31,7 +39,7 @@
                                             <label for="form_name">title *</label>
                                             <input id="form_name" type="text" name="title" class="form-control"
                                                    placeholder="Please enter your title *"
-                                                   data-error="title is required." value="{{$post->title}}">
+                                                   data-error="title is required." value="{{old('title', $post->title)}}">
 
                                         </div>
                                     </div>
@@ -40,7 +48,7 @@
                                             <label for="form_lastname">subtitle *</label>
                                             <input id="form_lastname" type="text" name="sub_title" class="form-control"
                                                    placeholder="Please enter your sub_title *"
-                                                   data-error="sub_title is required." value="{{$post->sub_title}}">
+                                                   data-error="sub_title is required." value="{{old('sub_title', $post->sub_title)}}">
                                         </div>
                                     </div>
                                 </div>
@@ -67,7 +75,7 @@
                                                 <label for="form_message">Description *</label>
                                                 <textarea id="form_message" name="description" class="form-control"
                                                           placeholder="Write  description here." rows="4"
-                                                          data-error="Please, leave us a description."> {{$post->description}}</textarea
+                                                          data-error="Please, leave us a description."> {{old('description',$post->description)}}</textarea
                                                 >
                                             </div>
 

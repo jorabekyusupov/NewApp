@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
+use App\Http\Requests\PostUpdateRequest;
 use App\Models\Post;
 use App\Traits\FileUpload;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -12,7 +15,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::orderBy('id', 'desc')->get();
+        $posts = Post::all();
         return view('welcome', compact('posts'));
     }
 
@@ -23,9 +26,10 @@ class PostController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(PostRequest $postRequest)
     {
-        $data = $request->all();
+
+        $data = $postRequest->validated();
         $data['user_id'] = 1;
         $data = $this->fileUpload($data);
         Post::create($data);
@@ -47,11 +51,11 @@ class PostController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(PostUpdateRequest $request, $id)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $post = Post::find($id);
-        if (isset($data['image'])){
+        if (isset($data['image'])) {
             $data = $this->fileUpload($data);
         }
         $post->update($data);
@@ -61,7 +65,10 @@ class PostController extends Controller
 
     public function destroy($id)
     {
+        $request = request()->merge(['id' => $id]);
+        $request->validate(['id' => 'required|exists:posts,id']);
         $post = Post::find($id);
+        unlink('storage/images/' . $post->image);
         $post->delete();
         return redirect()->route('home');
     }
