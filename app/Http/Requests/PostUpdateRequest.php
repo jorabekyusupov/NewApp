@@ -28,6 +28,7 @@ class PostUpdateRequest extends FormRequest
             'image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'description' => ['string'],
             'sub_title' => ['string'],
+            'category_id' => ['integer', 'exists:categories,id'],
         ];
     }
 }

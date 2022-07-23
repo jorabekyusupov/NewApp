@@ -69,6 +69,7 @@
                                     </div>
 
 
+                                </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -77,6 +78,16 @@
                                                           placeholder="Write  description here." rows="4"
                                                           data-error="Please, leave us a description."> {{old('description',$post->description)}}</textarea
                                                 >
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <select name="category_id" id="">
+                                                    @foreach($categories as $category)
+                                                        <option {{$post->category->id === $category->id ? 'selected' : ''}} value="{{$category->id}}">{{$category->name}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
 
                                         </div>
