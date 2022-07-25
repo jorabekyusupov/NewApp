@@ -24,7 +24,7 @@ class PostUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['max:255', 'required'],
+            'title' => ['max:255'],
             'image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'description' => ['string'],
             'sub_title' => ['string'],
