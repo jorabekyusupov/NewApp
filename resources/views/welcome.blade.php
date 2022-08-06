@@ -5,9 +5,15 @@
 @endsection
 @section('content')
     <div class="container">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="row">
             <div class="card-header">
                 <a class="btn btn-primary" href="{{route('post.create')}}">Create</a>
+                <a class="btn btn-primary" href="{{route('logout')}}">logout</a>
             </div>
             <div class="col-12">
                 <table class="table">

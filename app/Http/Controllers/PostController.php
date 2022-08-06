@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\postRequest;
+use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\PostUpdateRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Category;
@@ -20,48 +21,11 @@ class PostController extends Controller
 
     public function index(Request $request)
     {
-        $data = [
-            [
-                'title' => 'Title',
-                'sub_title' => 'Subtitle',
-                'category_id' => 13,
-                'image' => 'Image',
-                'description' => 'Description',
-                'user_id' => 1
-            ],
-            [
-                'title' => 'Title',
-                'sub_title' => 'Subtitle',
-                'category_id' => 13,
-                'image' => 'Image',
-                'description' => 'Description',
-                'user_id' => 1
 
-            ],
-            [
-                'title' => 'Title',
-                'sub_title' => 'Subtitle',
-                'category_id' => 13,
-                'image' => 'Image',
-                'description' => 'Description',
-                'user_id' => 1
 
-            ],
-            [
-                'title' => 'Title',
-                'sub_title' => 'Subtitle',
-                'category_id' => 13,
-                'image' => 'Image',
-                'description' => 'Description',
-                'user_id' => 1
-
-            ]
-        ];
-       Post::query()->insert($data);
         $columns = $this->columns;
-        $posts = Post::query()->with('category')->get();
-        $resources = PostResource::collection($posts);
-        return view('welcome', ['posts' => $resources, 'columns' => $columns]);
+        $posts = Post::query()->with('category')->orderByDesc('id')->get();
+        return view('welcome', ['posts' => $posts, 'columns' => $columns]);
     }
 
 
@@ -72,14 +36,14 @@ class PostController extends Controller
     }
 
 
-    public function store(postRequest $postRequest)
+    public function store(PostStoreRequest $postRequest)
     {
 
         $data = $postRequest->validated();
-        $data['user_id'] = 1;
+        $data['user_id'] = auth()->user()->id;
         $data = $this->fileUpload($data);
         Post::create($data);
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', 'Post created successfully');
     }
 
 
@@ -117,6 +81,7 @@ class PostController extends Controller
         $post = Post::find($id);
         unlink('storage/images/' . $post->image);
         $post->delete();
+        session()->flash('success', 'Объекты успешно удален');
         return redirect()->route('home');
     }
 }
