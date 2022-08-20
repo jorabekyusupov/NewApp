@@ -12,15 +12,15 @@
         @endif
         <div class="row">
             <div class="card-header">
-                <a class="btn btn-primary" href="{{route('post.create')}}">Create</a>
-                <a class="btn btn-primary" href="{{route('logout')}}">logout</a>
+                <a class="btn btn-primary" href="{{route('post.create')}}">{{__('columns.create')}}</a>
+                <a class="btn btn-primary" href="{{route('logout')}}">{{__('columns.logout')}}</a>
             </div>
             <div class="col-12">
                 <table class="table">
                     <thead>
                     <tr>
                         @foreach($columns as $column)
-                            <th scope="col">{{$column}}</th>
+                            <th scope="col">{{__('columns.'.$column)}}</th>
 
                         @endforeach
 
@@ -33,23 +33,23 @@
                                 <th scope="row">{{ ++$key }}</th>
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->sub_title }}</td>
-                                <td>{{ $post->category->name }}</td>
+                                <td>{{ $post->category }}</td>
                                 <td style="width: 50px; height: 50px; border-radius: 50%;"><img
                                         style="width: 50px; height: 50px; border-radius: 50%;"
                                         src="{{ asset('storage/images/'.$post->image) }}"
                                         alt=""></td>
                                 <td>
                                 <span class="badge bg-{{ $post->status === 1 ? 'success' : 'danger' }}">
-                                    {{$post->status === 1 ? 'active' : 'inactive'}}
+                                    {{__('columns.status.'.$post->status)}}
                                 </span>
                                 </td>
                                 <td>
-                                    <a href="{{route('post.show', $post)}}" class="btn btn-secondary">show</a>
-                                    <a href="{{route('post.edit', $post)}}" class="btn btn-primary">Edit</a>
+                                    <a href="{{route('post.show', $post)}}" class="btn btn-secondary">{{__('columns.show')}}</a>
+                                    <a href="{{route('post.edit', $post)}}" class="btn btn-primary">{{__('columns.edit')}}</a>
                                     <form class="d-inline" action="{{route('post.destroy', $post)}}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger">{{__('columns.delete')}}</button>
                                     </form>
                                 </td>
                             </tr>
@@ -59,6 +59,9 @@
 
                     </tbody>
                 </table>
+                    <tfoot>
+                    {{$posts->links() }}
+                    </tfoot>
             </div>
         </div>
     </div>

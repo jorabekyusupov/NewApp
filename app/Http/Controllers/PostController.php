@@ -21,10 +21,18 @@ class PostController extends Controller
 
     public function index(Request $request)
     {
+        $posts = Post::query()->select([
+            'posts.id as id',
+            'posts.title_' . app()->getLocale() . ' as title',
+            'posts.sub_title_' . app()->getLocale() . ' as sub_title',
+            'posts.description',
+            'posts.image',
+            'posts.status',
+            'categories.name as category',
 
-
+        ])->leftJoin('categories', 'categories.id', '=', 'posts.category_id')->paginate(10);
         $columns = $this->columns;
-        $posts = Post::query()->with('category')->orderByDesc('id')->get();
+//        $posts = Post::query()->with('category')->orderByDesc('id')->paginate(15);
         return view('welcome', ['posts' => $posts, 'columns' => $columns]);
     }
 

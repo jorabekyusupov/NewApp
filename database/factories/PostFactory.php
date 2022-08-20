@@ -19,6 +19,12 @@ class PostFactory extends Factory
     {
         return [
             'title' => $this->faker->title,
+            'title_uz' => $this->faker->title,
+            'title_en' => $this->faker->title,
+            'title_ru' => $this->faker->title,
+            'sub_title_uz' => $this->faker->sentence,
+            'sub_title_ru' => $this->faker->sentence,
+            'sub_title_en' => $this->faker->sentence,
             'sub_title' => $this->faker->sentence,
             'description' => $this->faker->text,
             'image' => $this->faker->imageUrl,
