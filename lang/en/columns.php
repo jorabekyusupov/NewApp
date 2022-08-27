@@ -16,4 +16,5 @@ return [
     'create' => 'Create',
     'show' => 'Show',
     'logout' => 'Logout',
+    'hello' => 'Hello',
 ];

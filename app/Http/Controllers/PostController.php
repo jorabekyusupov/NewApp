@@ -19,6 +19,10 @@ class PostController extends Controller
     protected array $columns = ['id', 'Title', 'Subtitle', 'category', 'Image', 'Status', 'Actions'];
 
 
+    public function category()
+    {
+        return view('category');
+    }
     public function index(Request $request)
     {
         $posts = Post::query()->select([

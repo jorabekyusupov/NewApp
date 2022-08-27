@@ -16,5 +16,6 @@ return [
     'create' => 'Yaratish',
     'show' => 'Ko\'rish',
     'logout' => 'Chiqish',
+    'hello' => 'Xush kelibsiz',
 
 ];

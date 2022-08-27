@@ -16,6 +16,7 @@ use App\Http\Controllers\PostController;
 Route::middleware(['auth:web', 'isAdmin'])->prefix(\App\Services\LanguageService::getLocale())->group(function () {
     Route::get('/posts', [PostController::class, 'index'])->name('home');
     Route::resource('/post', PostController::class)->except('index');
+    Route::get('/category', [PostController::class, 'category'])->name('category');
     Route::get('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 
 });

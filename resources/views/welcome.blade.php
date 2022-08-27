@@ -14,6 +14,7 @@
             <div class="card-header">
                 <a class="btn btn-primary" href="{{route('post.create')}}">{{__('columns.create')}}</a>
                 <a class="btn btn-primary" href="{{route('logout')}}">{{__('columns.logout')}}</a>
+                <a class="btn btn-primary"  href="{{route('category')}}">{{__('columns.category')}}</a>
             </div>
             <div class="col-12">
                 <table class="table">
@@ -44,8 +45,10 @@
                                 </span>
                                 </td>
                                 <td>
-                                    <a href="{{route('post.show', $post)}}" class="btn btn-secondary">{{__('columns.show')}}</a>
-                                    <a href="{{route('post.edit', $post)}}" class="btn btn-primary">{{__('columns.edit')}}</a>
+                                    <a href="{{route('post.show', $post)}}"
+                                       class="btn btn-secondary">{{__('columns.show')}}</a>
+                                    <a href="{{route('post.edit', $post)}}"
+                                       class="btn btn-primary">{{__('columns.edit')}}</a>
                                     <form class="d-inline" action="{{route('post.destroy', $post)}}" method="post">
                                         @csrf
                                         @method('DELETE')
@@ -59,9 +62,9 @@
 
                     </tbody>
                 </table>
-                    <tfoot>
-                    {{$posts->links() }}
-                    </tfoot>
+                <tfoot>
+                {{$posts->links() }}
+                </tfoot>
             </div>
         </div>
     </div>
