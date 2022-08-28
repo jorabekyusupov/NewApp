@@ -17,5 +17,12 @@ return [
     'show' => 'Ko\'rish',
     'logout' => 'Chiqish',
     'hello' => 'Xush kelibsiz',
-
+    'name' => 'Nomi',
+    'guard_name' => 'Guard nomi',
+    'created_at' => 'Yaratilgan',
+    'updated_at' => 'Yangilangan',
+    'roles' => 'Rollar',
+    'home' => 'Bosh sahifaga qaytish',
+    'permissions' => 'Huquqlar',
+    'assign' => 'Tayinlash',
 ];

@@ -14,6 +14,9 @@ class LocaleMiddleware
         if (in_array($locale, config('app.locales'), true)) {
             app()->setLocale($locale);
         }
+        else {
+            app()->setLocale(app()->getLocale());
+        }
 
         return $next($request);
     }
