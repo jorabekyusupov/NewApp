@@ -16,6 +16,8 @@
                 <a class="btn btn-primary" href="{{route('logout')}}">{{__('columns.logout')}}</a>
                 <a class="btn btn-primary"  href="{{route('category')}}">{{__('columns.category')}}</a>
                 <a class="btn btn-primary"  href="{{route('role.index')}}">{{__('columns.roles')}}</a>
+                <a class="btn btn-primary"  href="{{route('user.import')}}">{{__('columns.import')}}</a>
+                <a class="btn btn-primary"  href="{{route('user.export')}}">{{__('columns.export')}}</a>
             </div>
             <div class="col-12">
                 <table class="table">

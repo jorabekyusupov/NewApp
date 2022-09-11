@@ -22,7 +22,8 @@ Route::middleware(['auth:web'])->prefix(\App\Services\LanguageService::getLocale
     Route::resource('/permission', \App\Http\Controllers\PermissionController::class);
     Route::post('/assign', [\App\Http\Controllers\UserController::class, 'assignRole'])->name('assign-role');
     Route::get('/assign', [\App\Http\Controllers\UserController::class, 'assignCreate'])->name('assign-create');
-
+    Route::get('/import', [\App\Http\Controllers\UserController::class, 'import'])->name('user.import');
+    Route::get('/export', [\App\Http\Controllers\UserController::class, 'export'])->name('user.export');
 });
 Route::get('/login', [\App\Http\Controllers\AuthController::class, 'login_page'])->name('login');
 Route::get('/register', [\App\Http\Controllers\AuthController::class, 'register_page'])->name('register');

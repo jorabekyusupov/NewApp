@@ -25,6 +25,8 @@ return [
     'home' => 'Back to dashboard',
     'permissions' => 'Permissions',
     'assign' => 'Assign',
+    'import' => 'Import',
+    'export' => 'Export',
 
 
 ];

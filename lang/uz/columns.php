@@ -25,4 +25,6 @@ return [
     'home' => 'Bosh sahifaga qaytish',
     'permissions' => 'Huquqlar',
     'assign' => 'Tayinlash',
+    'import' => 'Import',
+    'export' => 'Export',
 ];
