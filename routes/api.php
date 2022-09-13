@@ -18,3 +18,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::apiResource('/posts', \App\Http\Controllers\api\PostApiController::class);
+Route::apiResource('/products', \App\Http\Controllers\api\ProductApiController::class);
+Route::apiResource('/brands', \App\Http\Controllers\api\BrandsController::class);
+Route::get('/apple', [\App\Http\Controllers\api\ProductApiController::class, 'getAppleProducts']);
